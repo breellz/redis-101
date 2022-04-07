@@ -6,10 +6,15 @@ const PORT = process.env.PORT || 5000
 const REDIS_PORT = process.env.PORT || 6379
 
 const client = redis.createClient(REDIS_PORT)
-
+ client.connect()
 const app = express()
-//Make request to github for data
+//set response 
 
+const setResponse = (username, repos) => {
+    return `<h2>${username} has ${repos} Github Repos </>`
+}
+
+//Make request to github for data
 const getRepose = async(req, res, next) => {
     try {
         console.log('Fetching data......')
@@ -18,7 +23,12 @@ const getRepose = async(req, res, next) => {
         const url = `https://api.github.com/users/${username}`
         const response = await axios({url});
        
-        res.send(response.data)
+        const repos = response.data.public_repos
+        
+        //set data to redis 
+        client.setEx(username, 3600, repos)
+
+        res.send(setResponse(username, repos))
     } catch (error) {
         res.status(500)
     }
