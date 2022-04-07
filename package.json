@@ -1,0 +1,28 @@
+{
+  "name": "redis-101",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/breellz/redis-101.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/breellz/redis-101/issues"
+  },
+  "homepage": "https://github.com/breellz/redis-101#readme",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "express": "^4.17.3",
+    "redis": "^4.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
